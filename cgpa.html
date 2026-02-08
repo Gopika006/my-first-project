@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="cgpaApp">
+<head>
+  <title>Simple CGPA Calculator</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    var app = angular.module("cgpaApp", []);
+    app.controller("cgpaCtrl", function($scope) {
+      $scope.calculate = function() {
+        var total =
+          (parseFloat($scope.sub1) || 0) +
+          (parseFloat($scope.sub2) || 0) +
+          (parseFloat($scope.sub3) || 0) +
+          (parseFloat($scope.sub4) || 0) +
+          (parseFloat($scope.sub5) || 0);
+        var cgpa = total / 5;
+        $scope.result = "Your CGPA is: " + cgpa.toFixed(2);
+      };
+    });
+  </script>
+</head>
+<body ng-controller="cgpaCtrl">
+  <h2>CGPA Calculator</h2>
+  <p>Enter your grades for 5 subjects:</p>
+
+  <input type="number" ng-model="sub1" placeholder="Subject 1"><br><br>
+  <input type="number" ng-model="sub2" placeholder="Subject 2"><br><br>
+  <input type="number" ng-model="sub3" placeholder="Subject 3"><br><br>
+  <input type="number" ng-model="sub4" placeholder="Subject 4"><br><br>
+  <input type="number" ng-model="sub5" placeholder="Subject 5"><br><br>
+
+  <button ng-click="calculate()">Calculate CGPA</button>
+  <h3>{{result}}</h3>
+</body>
+</html>
